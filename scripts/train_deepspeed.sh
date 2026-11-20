@@ -7,7 +7,7 @@ model=${1:-"vicuna"}
 task=${2:-"nc"}
 dataset=${3-"arxiv-products"}
 bs=${4:-16}
-emb=${6:-"simteg"}
+emb=${5:-"simteg"}
 
 
 if [ ${model} = "vicuna" ]; then
@@ -70,11 +70,18 @@ elif [ ${model} = "opt_2.7b_4hop" ]; then
   mode="v1"
 fi
 
+model_base="${MODEL_BASE:-$model_base}"
+learning_rate="${LEARNING_RATE:-2e-3}"
+output_dir="${OUTPUT_DIR:-./checkpoints/${dataset}/${prefix}_${task}}"
+gradient_accumulation_steps="${GRADIENT_ACCUMULATION_STEPS:-1}"
+gpu_include="${GPU_INCLUDE:-localhost:0,1}"
+master_port="${LLAGA_MASTER_PORT:-61000}"
+extra_train_args=("${@:6}")
 
 echo "PREFIX:  ${prefix}"
 
 wandb offline
-echo deepspeed  --include localhost:0,1,2,3 --master_port 61000  train/train_mem.py \
+echo deepspeed  --include "${gpu_include}" --master_port "${master_port}"  train/train_mem.py \
 --deepspeed ./scripts/zero2.json \
 --model_name_or_path ${model_base} \
 --version ${mode} \
@@ -84,14 +91,14 @@ echo deepspeed  --include localhost:0,1,2,3 --master_port 61000  train/train_mem
 --mm_use_graph_start_end False \
 --mm_use_graph_patch_token False \
 --bf16 True \
---output_dir  ./checkpoints/${dataset}/${prefix}_${task} \
+--output_dir  "${output_dir}" \
 --num_train_epochs 1 \
 --per_device_train_batch_size ${bs} \
 --per_device_eval_batch_size 4 \
---gradient_accumulation_steps 1 \
+--gradient_accumulation_steps "${gradient_accumulation_steps}" \
 --evaluation_strategy "no" \
 --save_strategy "epoch" \
---learning_rate 2e-3 \
+--learning_rate "${learning_rate}" \
 --weight_decay 0. \
 --warmup_ratio 0.03 \
 --lr_scheduler_type "cosine" \
@@ -106,9 +113,9 @@ echo deepspeed  --include localhost:0,1,2,3 --master_port 61000  train/train_mem
 --mm_projector_type ${projector_type} \
 --use_task ${task} \
 --use_dataset ${dataset} \
---template ${template}
+--template ${template} "${extra_train_args[@]}"
 
-deepspeed  --include localhost:0,1,2,3 --master_port 61000  train/train_mem.py \
+deepspeed  --include "${gpu_include}" --master_port "${master_port}"  train/train_mem.py \
 --deepspeed ./scripts/zero2.json \
 --model_name_or_path ${model_base} \
 --version ${mode} \
@@ -118,14 +125,14 @@ deepspeed  --include localhost:0,1,2,3 --master_port 61000  train/train_mem.py \
 --mm_use_graph_start_end False \
 --mm_use_graph_patch_token False \
 --bf16 True \
---output_dir  ./checkpoints/${dataset}/${prefix}_${task} \
+--output_dir  "${output_dir}" \
 --num_train_epochs 1 \
 --per_device_train_batch_size ${bs} \
 --per_device_eval_batch_size 4 \
---gradient_accumulation_steps 1 \
+--gradient_accumulation_steps "${gradient_accumulation_steps}" \
 --evaluation_strategy "no" \
 --save_strategy "epoch" \
---learning_rate 2e-3 \
+--learning_rate "${learning_rate}" \
 --weight_decay 0. \
 --warmup_ratio 0.03 \
 --lr_scheduler_type "cosine" \
@@ -140,4 +147,4 @@ deepspeed  --include localhost:0,1,2,3 --master_port 61000  train/train_mem.py \
 --mm_projector_type ${projector_type} \
 --use_task ${task} \
 --use_dataset ${dataset} \
---template ${template}
+--template ${template} "${extra_train_args[@]}"

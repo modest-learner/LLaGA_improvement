@@ -70,6 +70,9 @@ class DataArguments:
     use_task:Optional[str] = field(default="nc")
     use_dataset:Optional[str] = field(default="arxiv")
     template: Optional[str] = field(default="ND")
+    data_root: str = field(default='dataset')
+    embedding_dim: Optional[int] = field(default=None)
+    graph_input_ablation: str = field(default='full')
 
 
 
@@ -589,6 +592,11 @@ class LazySupervisedGraphDataset(Dataset):
         self.use_dataset = data_args.use_dataset.split('-')
         self.use_hop = data_args.use_hop
         self.template = data_args.template
+        self.graph_input_ablation = data_args.graph_input_ablation
+        if self.graph_input_ablation not in ('full', 'center_repeat'):
+            raise ValueError('Training supports full or center_repeat graph input.')
+        if self.graph_input_ablation != 'full' and (self.template != 'HO' or data_args.use_task != 'lp'):
+            raise ValueError('center_repeat training is restricted to HO LP.')
         self.datas={}
         list_data_dict = []
         self.pretrained_embs={}
@@ -612,6 +620,7 @@ class LazySupervisedGraphDataset(Dataset):
             else:
                 print(f"{dataset} not exists!!!!")
                 raise ValueError
+            data_path = os.path.join(data_args.data_root, os.path.basename(os.path.dirname(data_path)), 'processed_data.pt')
             data = torch.load(data_path)
             self.datas[dataset]=data
             data_dir=os.path.dirname(data_path)
@@ -838,6 +847,8 @@ class LazySupervisedGraphDataset(Dataset):
                 # center_id = self.index[self.list_data_dict[i]["dataset"]][graph[:, 0]]
                 center_id = graph[:, 0]
                 graph_emb = torch.stack([emb[center_id] for emb in self.pretrained_embs[self.list_data_dict[i]["dataset"]]], dim=1)
+                if self.graph_input_ablation == 'center_repeat':
+                    graph_emb = graph_emb[:, :1].expand_as(graph_emb).clone()
             else:
                 raise ValueError
             data_dict['graph'] = graph
@@ -897,6 +908,8 @@ def _train():
     parser = transformers.HfArgumentParser(
         (ModelArguments, DataArguments, TrainingArguments))
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+    # Seed before Projector initialization and dataset shuffling on every rank.
+    transformers.set_seed(training_args.seed)
     local_rank = training_args.local_rank
     compute_dtype = (torch.float16 if training_args.fp16 else (torch.bfloat16 if training_args.bf16 else torch.float32))
 
@@ -906,7 +919,11 @@ def _train():
             return
         print(f"{training_args.output_dir} already exists!!!!")
 
-    if data_args.pretrained_embedding_type in ['sbert', 'simteg_sbert']:
+    if data_args.embedding_dim is not None:
+        if data_args.embedding_dim <= 0:
+            raise ValueError('embedding_dim must be positive.')
+        model_args.mm_hidden_size = data_args.embedding_dim
+    elif data_args.pretrained_embedding_type in ['sbert', 'simteg_sbert']:
         model_args.mm_hidden_size = 384
     elif data_args.pretrained_embedding_type in ["simteg_e5", "simteg_roberta", "roberta"]:
         model_args.mm_hidden_size = 1024

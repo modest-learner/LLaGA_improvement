@@ -1,0 +1,111 @@
+{
+  "snapshot_time": "2026-11-20T09:51:32.824797",
+  "sources": [
+    {
+      "path": "results/table1/official_20261114_192146/general_model_audit_20261116.csv",
+      "sha256": "03aed9320da702d99c4bcce4bf2f5a24f1651b3835ddc40d0dd7efa23dd60733",
+      "bytes": 1431,
+      "mtime": "2026-11-16T11:41:15.227189"
+    },
+    {
+      "path": "results/table1/official_20261114_192146/GENERAL_MODEL_RESULTS_20261116.md",
+      "sha256": "580990543f32408eba4dfd4ac9138cf90423b57b79122761e67197aff6a3ed7b",
+      "bytes": 4421,
+      "mtime": "2026-11-16T11:43:45.228179"
+    },
+    {
+      "path": "results/table5/ho_linear_multiseed_summary.json",
+      "sha256": "0484d7de7065ec81b60e4ccff32ab237209a2e38e7af8400c30a257db828d791",
+      "bytes": 1207,
+      "mtime": "2026-11-15T12:04:45.990368"
+    },
+    {
+      "path": "results/table8/response_validity_audit_20261116/REPORT.md",
+      "sha256": "3ccd967cf88073d73194a946589953ce69947e96c0036e692e97b014c440b30e",
+      "bytes": 3738,
+      "mtime": "2026-11-16T15:30:45.971349"
+    },
+    {
+      "path": "results/table8/HO_linear_simteg_nctrainseed42/audit_20261116/REPORT.md",
+      "sha256": "d1c42f44ce28eb5bb80fd7ed0482a1194328304d1905b3d02f95da16ab3226ee",
+      "bytes": 2306,
+      "mtime": "2026-11-16T19:53:12.214390"
+    },
+    {
+      "path": "results/lp_next_round/summary/REPORT.md",
+      "sha256": "834c4dd0a38d43cee57fc35c6d7f25546ee02e31888d8bd8dc0f10c1c91e7b2f",
+      "bytes": 883,
+      "mtime": "2026-11-17T17:10:32.573539"
+    },
+    {
+      "path": "results/lp_phase2/pubmed_three_seed_summary/REPORT.md",
+      "sha256": "9d74b405c47fc5ef8af86c374caca1939cecd4871ca37dc942fed6fb27571dd1",
+      "bytes": 767,
+      "mtime": "2026-11-18T21:07:34.171728"
+    },
+    {
+      "path": "results/lp_phase2/pubmed_three_seed_summary/metrics.csv",
+      "sha256": "355c4ca7587a24808dfc0fa57c44c41221a6a30519dc39bc21df71357cd9694f",
+      "bytes": 4091,
+      "mtime": "2026-11-18T21:07:34.170728"
+    },
+    {
+      "path": "results/lp_phase2/pubmed_three_seed_summary/analysis/REPORT.md",
+      "sha256": "da5a2b19d24c72b0b2a9c5c6b9e210ae89b964fb2f043ead92080025521a5ee8",
+      "bytes": 2853,
+      "mtime": "2026-11-18T20:50:16.671779"
+    },
+    {
+      "path": "results/lp_phase2/analysis_20261118/REPORT.md",
+      "sha256": "a3fcbd781ab2b3104bcef4b60a501d43b8c9efb919b5efe823aa20d564daaa86",
+      "bytes": 4200,
+      "mtime": "2026-11-18T08:26:17.950346"
+    },
+    {
+      "path": "results/lp_cross_direction_analysis/REPORT_20261119.md",
+      "sha256": "199c3f389fb9225d1059611bb9cf0a928f2132489178d345186529ad6f4507c6",
+      "bytes": 2752,
+      "mtime": "2026-11-19T00:19:23.526555"
+    },
+    {
+      "path": "results/lp_weight_control_seed43/summary/REPORT.md",
+      "sha256": "5ec702d6fd44058df4ea436683328dcb763b9af92704f38516642ea7d2f60b9a",
+      "bytes": 785,
+      "mtime": "2026-11-19T22:25:15.960938"
+    },
+    {
+      "path": "results/lp_weight_control_seed43/summary/two_seed_comparison.csv",
+      "sha256": "a64f0913099b21e66466e8620e82449b6fcc5c2b8ad0249acc9ff5359a986356",
+      "bytes": 2517,
+      "mtime": "2026-11-19T22:25:58.780100"
+    },
+    {
+      "path": "results/lp_weight_control_seed43/summary/seed_configuration_audit.json",
+      "sha256": "564b3dab94c4d55cddb9548ba1dc17c98d5e815066f1023e4526f7786d3b8308",
+      "bytes": 6407,
+      "mtime": "2026-11-19T22:36:59.684945"
+    },
+    {
+      "path": "results/lp_source_control/summary/ANALYSIS_20261120.md",
+      "sha256": "059586fa4eb843e0b1e060f217aa74b495d077abd032d272637598f5eb6de153",
+      "bytes": 3167,
+      "mtime": "2026-11-20T06:40:44.874652"
+    },
+    {
+      "path": "results/lp_source_control/summary/comparison.csv",
+      "sha256": "015853e3611af1f5af1731d7c2aeec4a9d5002ce1348261b3f37e0dd81f08af2",
+      "bytes": 4149,
+      "mtime": "2026-11-20T06:39:47.624087"
+    },
+    {
+      "path": "results/lp_source_control/summary/REPORT.md",
+      "sha256": "4f5120f4670a94aa46aa856a484cfb8d7b66d6d3b76ac16d25288957681156cf",
+      "bytes": 1069,
+      "mtime": "2026-11-20T06:39:47.625087"
+    }
+  ],
+  "pending_reports": {
+    "results/lp_weight_control_three_seeds/REPORT.md": false,
+    "results/lp_source_control/three_seed_summary/REPORT.md": false
+  }
+}

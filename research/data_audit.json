@@ -1,0 +1,625 @@
+{
+  "created_utc": "2026-11-13T05:07:28.136031+00:00",
+  "commit": "288240f1d85e90d831470ae4813fc64cc1a04149",
+  "limitations": [
+    "No training/inference or HO recomputation was performed.",
+    "Full-graph edge presence alone is not leakage: the model's actual input view must be checked.",
+    "A query edge in a stored ND tree is an input contamination risk requiring trace-through verification.",
+    "JSONL files are hashed; tensor files have size checks only.",
+    "Feature provenance, upstream supervision and cross-dataset text overlap remain unaudited."
+  ],
+  "datasets": {
+    "cora": {
+      "files": {
+        "edge_sampled_2_10_only_test.jsonl": {
+          "bytes": 976427
+        },
+        "edge_sampled_2_10_only_train.jsonl": {
+          "bytes": 2332181
+        },
+        "processed_data.pt": {
+          "bytes": 20767310
+        },
+        "processed_data_link_notest.pt": {
+          "bytes": 15715142
+        },
+        "roberta_x.pt": {
+          "bytes": 11093158
+        },
+        "sampled_2_10_test.jsonl": {
+          "bytes": 578561
+        },
+        "sampled_2_10_train.jsonl": {
+          "bytes": 1732007
+        },
+        "sampled_2_10_val.jsonl": {
+          "bytes": 578108
+        },
+        "sbert_x.pt": {
+          "bytes": 4160668
+        },
+        "simteg_e5_1hop_x.pt": {
+          "bytes": 11093193
+        },
+        "simteg_e5_2hop_x.pt": {
+          "bytes": 11093193
+        },
+        "simteg_e5_3hop_x.pt": {
+          "bytes": 11093193
+        },
+        "simteg_e5_4hop_x.pt": {
+          "bytes": 11093193
+        },
+        "simteg_e5_x.pt": {
+          "bytes": 11093079
+        },
+        "simteg_roberta_1hop_x.pt": {
+          "bytes": 11093218
+        },
+        "simteg_roberta_2hop_x.pt": {
+          "bytes": 11093218
+        },
+        "simteg_roberta_3hop_x.pt": {
+          "bytes": 11093218
+        },
+        "simteg_roberta_4hop_x.pt": {
+          "bytes": 11093218
+        },
+        "simteg_roberta_x.pt": {
+          "bytes": 11093079
+        },
+        "simteg_sbert_1hop_x.pt": {
+          "bytes": 4160728
+        },
+        "simteg_sbert_2hop_x.pt": {
+          "bytes": 4160728
+        },
+        "simteg_sbert_3hop_x.pt": {
+          "bytes": 4160728
+        },
+        "simteg_sbert_4hop_x.pt": {
+          "bytes": 4160728
+        },
+        "simteg_sbert_x.pt": {
+          "bytes": 4160599
+        }
+      },
+      "jsonl": {
+        "edge_sampled_2_10_only_test.jsonl": {
+          "sha256": "b8511263d9e2950e91a638eaf211d2a924a400744cc7784d778d1f414ca8ddca",
+          "unique_ids_or_pairs": 653,
+          "records": 680,
+          "label_yes": 301,
+          "self_pairs": 1,
+          "out_of_range_ids": 0,
+          "positive_absent_from_full_graph": 0,
+          "negative_present_in_full_graph": 1,
+          "records_with_query_edge_in_stored_tree": 0,
+          "records_with_query_edge_at_tree_root": 0,
+          "duplicate_ids_or_undirected_pairs": 27,
+          "label_no": 379
+        },
+        "edge_sampled_2_10_only_train.jsonl": {
+          "sha256": "dbf11297409af2672c403c6f98eae0a08cf3cb70c55e5c6057b6ae9218073b2c",
+          "unique_ids_or_pairs": 1537,
+          "records": 1626,
+          "label_yes": 813,
+          "self_pairs": 2,
+          "out_of_range_ids": 0,
+          "positive_absent_from_full_graph": 0,
+          "negative_present_in_full_graph": 1,
+          "records_with_query_edge_in_stored_tree": 0,
+          "records_with_query_edge_at_tree_root": 0,
+          "duplicate_ids_or_undirected_pairs": 89,
+          "label_no": 813
+        },
+        "sampled_2_10_test.jsonl": {
+          "sha256": "ba69af61378660c20f3eed214c55369c87deda283720792a471f3d163c1c8f36",
+          "unique_ids_or_pairs": 542,
+          "records": 542,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        },
+        "sampled_2_10_train.jsonl": {
+          "sha256": "9cdf01370225c5138dc359a75d468d5a96be6097d8e01decb7607c7ea235358f",
+          "unique_ids_or_pairs": 1624,
+          "records": 1624,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        },
+        "sampled_2_10_val.jsonl": {
+          "sha256": "63290b5a4cc85410d3639913a098047321d2f7128215871710e228e2c5f9bde7",
+          "unique_ids_or_pairs": 542,
+          "records": 542,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        }
+      },
+      "overlap": {
+        "sampled_2_10_train.jsonl vs sampled_2_10_val.jsonl": 0,
+        "sampled_2_10_train.jsonl vs sampled_2_10_test.jsonl": 0,
+        "sampled_2_10_val.jsonl vs sampled_2_10_test.jsonl": 0,
+        "edge_sampled_2_10_only_train.jsonl vs edge_sampled_2_10_only_test.jsonl": 0
+      },
+      "missing_core_files": [],
+      "missing_sbert_ho4_files": [
+        "sbert_1hop_x.pt",
+        "sbert_2hop_x.pt",
+        "sbert_3hop_x.pt",
+        "sbert_4hop_x.pt"
+      ],
+      "graph": {
+        "nodes": 2708,
+        "stored_directed_edges": 10556,
+        "unique_undirected_edges_including_loops": 5278,
+        "self_loops": 0,
+        "keys": [
+          "abs",
+          "edge_index",
+          "keywords",
+          "label_texts",
+          "num_classes",
+          "num_nodes",
+          "raw_texts",
+          "test_id",
+          "test_mask",
+          "title",
+          "train_id",
+          "train_mask",
+          "val_id",
+          "val_mask",
+          "x",
+          "y"
+        ],
+        "train_mask": {
+          "shape": [
+            2708
+          ],
+          "sum": 1624
+        },
+        "val_mask": {
+          "shape": [
+            2708
+          ],
+          "sum": 542
+        },
+        "test_mask": {
+          "shape": [
+            2708
+          ],
+          "sum": 542
+        }
+      },
+      "sbert": {
+        "shape": [
+          2708,
+          384
+        ],
+        "dtype": "torch.float32",
+        "node_count_matches": true,
+        "all_finite": true,
+        "provenance": "UNKNOWN: filename and shape do not certify encoder or training data"
+      }
+    },
+    "pubmed": {
+      "files": {
+        "edge_sampled_2_10_only_test.jsonl": {
+          "bytes": 8072428
+        },
+        "edge_sampled_2_10_only_train.jsonl": {
+          "bytes": 17796776
+        },
+        "processed_data.pt": {
+          "bytes": 106513102
+        },
+        "processed_data_link_notest.pt": {
+          "bytes": 40995142
+        },
+        "roberta_x.pt": {
+          "bytes": 80762022
+        },
+        "sampled_2_10_test.jsonl": {
+          "bytes": 4257527
+        },
+        "sampled_2_10_train.jsonl": {
+          "bytes": 12770569
+        },
+        "sampled_2_10_val.jsonl": {
+          "bytes": 4257968
+        },
+        "sbert_x.pt": {
+          "bytes": 30286492
+        },
+        "simteg_e5_1hop_x.pt": {
+          "bytes": 80762057
+        },
+        "simteg_e5_2hop_x.pt": {
+          "bytes": 80762057
+        },
+        "simteg_e5_3hop_x.pt": {
+          "bytes": 80762057
+        },
+        "simteg_e5_4hop_x.pt": {
+          "bytes": 80762057
+        },
+        "simteg_e5_x.pt": {
+          "bytes": 80761943
+        },
+        "simteg_roberta_1hop_x.pt": {
+          "bytes": 80762082
+        },
+        "simteg_roberta_2hop_x.pt": {
+          "bytes": 80762082
+        },
+        "simteg_roberta_3hop_x.pt": {
+          "bytes": 80762082
+        },
+        "simteg_roberta_4hop_x.pt": {
+          "bytes": 80762082
+        },
+        "simteg_roberta_x.pt": {
+          "bytes": 80761943
+        },
+        "simteg_sbert_1hop_x.pt": {
+          "bytes": 30286552
+        },
+        "simteg_sbert_2hop_x.pt": {
+          "bytes": 30286552
+        },
+        "simteg_sbert_3hop_x.pt": {
+          "bytes": 30286552
+        },
+        "simteg_sbert_4hop_x.pt": {
+          "bytes": 30286552
+        },
+        "simteg_sbert_x.pt": {
+          "bytes": 30286423
+        }
+      },
+      "jsonl": {
+        "edge_sampled_2_10_only_test.jsonl": {
+          "sha256": "df256e11a6c86621b119ca165396a31ef194bc7331a1035669c15831a98e97d5",
+          "unique_ids_or_pairs": 5111,
+          "records": 5368,
+          "label_yes": 2667,
+          "self_pairs": 0,
+          "out_of_range_ids": 0,
+          "positive_absent_from_full_graph": 0,
+          "negative_present_in_full_graph": 0,
+          "records_with_query_edge_in_stored_tree": 0,
+          "records_with_query_edge_at_tree_root": 0,
+          "duplicate_ids_or_undirected_pairs": 257,
+          "label_no": 2701
+        },
+        "edge_sampled_2_10_only_train.jsonl": {
+          "sha256": "b79ca5f93b4310a94cbb15b85d65539559202a516b3acfab7c33225216a8fe16",
+          "unique_ids_or_pairs": 11258,
+          "records": 11832,
+          "label_no": 5916,
+          "self_pairs": 1,
+          "out_of_range_ids": 0,
+          "positive_absent_from_full_graph": 0,
+          "negative_present_in_full_graph": 0,
+          "records_with_query_edge_in_stored_tree": 0,
+          "records_with_query_edge_at_tree_root": 0,
+          "duplicate_ids_or_undirected_pairs": 574,
+          "label_yes": 5916
+        },
+        "sampled_2_10_test.jsonl": {
+          "sha256": "25dc6a1febec2005accc7483074975f4a81c20e37e21feec6aadbcb3ce1824e4",
+          "unique_ids_or_pairs": 3944,
+          "records": 3944,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        },
+        "sampled_2_10_train.jsonl": {
+          "sha256": "73f3a52c09e0387257a924a62a3820cc65b6325c4a623f4acdb9c68c4b0c5b2f",
+          "unique_ids_or_pairs": 11830,
+          "records": 11830,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        },
+        "sampled_2_10_val.jsonl": {
+          "sha256": "5535ec285ee1aff50e8dd9603e53d9015c05fb8ae7da5ff291a7d279961fea62",
+          "unique_ids_or_pairs": 3943,
+          "records": 3943,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        }
+      },
+      "overlap": {
+        "sampled_2_10_train.jsonl vs sampled_2_10_val.jsonl": 0,
+        "sampled_2_10_train.jsonl vs sampled_2_10_test.jsonl": 0,
+        "sampled_2_10_val.jsonl vs sampled_2_10_test.jsonl": 0,
+        "edge_sampled_2_10_only_train.jsonl vs edge_sampled_2_10_only_test.jsonl": 0
+      },
+      "missing_core_files": [],
+      "missing_sbert_ho4_files": [
+        "sbert_1hop_x.pt",
+        "sbert_2hop_x.pt",
+        "sbert_3hop_x.pt",
+        "sbert_4hop_x.pt"
+      ],
+      "graph": {
+        "nodes": 19717,
+        "stored_directed_edges": 88648,
+        "unique_undirected_edges_including_loops": 44324,
+        "self_loops": 0,
+        "keys": [
+          "abs",
+          "edge_index",
+          "label_texts",
+          "num_classes",
+          "num_nodes",
+          "raw_texts",
+          "test_id",
+          "test_mask",
+          "title",
+          "train_id",
+          "train_mask",
+          "val_id",
+          "val_mask",
+          "x",
+          "y"
+        ],
+        "train_mask": {
+          "shape": [
+            19717
+          ],
+          "sum": 11830
+        },
+        "val_mask": {
+          "shape": [
+            19717
+          ],
+          "sum": 3943
+        },
+        "test_mask": {
+          "shape": [
+            19717
+          ],
+          "sum": 3944
+        }
+      },
+      "sbert": {
+        "shape": [
+          19717,
+          384
+        ],
+        "dtype": "torch.float32",
+        "node_count_matches": true,
+        "all_finite": true,
+        "provenance": "UNKNOWN: filename and shape do not certify encoder or training data"
+      }
+    },
+    "ogbn-arxiv": {
+      "files": {
+        "edge_sampled_2_10_only_test.jsonl": {
+          "bytes": 135462921
+        },
+        "edge_sampled_2_10_only_train.jsonl": {
+          "bytes": 150825781
+        },
+        "no_test_link_mask.pt": {
+          "bytes": 170574
+        },
+        "processed_data.pt": {
+          "bytes": 556878298
+        },
+        "processed_data_link_notest.pt": {
+          "bytes": 155184450
+        },
+        "roberta_x.pt": {
+          "bytes": 693630118
+        },
+        "sampled_2_10_test.jsonl": {
+          "bytes": 111984291
+        },
+        "sampled_2_10_train.jsonl": {
+          "bytes": 207118819
+        },
+        "sampled_2_10_val.jsonl": {
+          "bytes": 68464550
+        },
+        "sbert_x.pt": {
+          "bytes": 260112028
+        },
+        "simteg_e5_1hop_x.pt": {
+          "bytes": 693630153
+        },
+        "simteg_e5_1hop_x_notestlink.pt": {
+          "bytes": 257971520
+        },
+        "simteg_e5_2hop_x.pt": {
+          "bytes": 693630153
+        },
+        "simteg_e5_2hop_x_notestlink.pt": {
+          "bytes": 257971520
+        },
+        "simteg_e5_3hop_x.pt": {
+          "bytes": 693630153
+        },
+        "simteg_e5_3hop_x_notestlink.pt": {
+          "bytes": 257971520
+        },
+        "simteg_e5_4hop_x.pt": {
+          "bytes": 693630153
+        },
+        "simteg_e5_4hop_x_notestlink.pt": {
+          "bytes": 257971520
+        },
+        "simteg_e5_x.pt": {
+          "bytes": 693629608
+        },
+        "simteg_roberta_1hop_x.pt": {
+          "bytes": 693630178
+        },
+        "simteg_roberta_1hop_x_notestlink.pt": {
+          "bytes": 257971545
+        },
+        "simteg_roberta_2hop_x.pt": {
+          "bytes": 693630178
+        },
+        "simteg_roberta_2hop_x_notestlink.pt": {
+          "bytes": 257971545
+        },
+        "simteg_roberta_3hop_x.pt": {
+          "bytes": 693630178
+        },
+        "simteg_roberta_3hop_x_notestlink.pt": {
+          "bytes": 257971545
+        },
+        "simteg_roberta_4hop_x.pt": {
+          "bytes": 693630178
+        },
+        "simteg_roberta_4hop_x_notestlink.pt": {
+          "bytes": 257971545
+        },
+        "simteg_roberta_x.pt": {
+          "bytes": 693629608
+        },
+        "simteg_sbert_1hop_x.pt": {
+          "bytes": 260112088
+        },
+        "simteg_sbert_1hop_x_notestlink.pt": {
+          "bytes": 96740175
+        },
+        "simteg_sbert_2hop_x.pt": {
+          "bytes": 260112088
+        },
+        "simteg_sbert_2hop_x_notestlink.pt": {
+          "bytes": 96740175
+        },
+        "simteg_sbert_3hop_x.pt": {
+          "bytes": 260112088
+        },
+        "simteg_sbert_3hop_x_notestlink.pt": {
+          "bytes": 96740175
+        },
+        "simteg_sbert_4hop_x.pt": {
+          "bytes": 260112088
+        },
+        "simteg_sbert_4hop_x_notestlink.pt": {
+          "bytes": 96740175
+        },
+        "simteg_sbert_x.pt": {
+          "bytes": 260111528
+        }
+      },
+      "jsonl": {
+        "edge_sampled_2_10_only_test.jsonl": {
+          "sha256": "6af1a8ebcb5f815e7599dbfa32a762090c301fd9e16a246a8ab16879a1960e91",
+          "unique_ids_or_pairs": 78458,
+          "records": 80086,
+          "label_no": 42971,
+          "self_pairs": 2,
+          "out_of_range_ids": 0,
+          "positive_absent_from_full_graph": 0,
+          "negative_present_in_full_graph": 0,
+          "records_with_query_edge_in_stored_tree": 0,
+          "records_with_query_edge_at_tree_root": 0,
+          "duplicate_ids_or_undirected_pairs": 1628,
+          "label_yes": 37115
+        },
+        "edge_sampled_2_10_only_train.jsonl": {
+          "sha256": "2f2dfbbbc080dcc48da068178dba679cb07442d1b556ed1b4f3090128b59836a",
+          "unique_ids_or_pairs": 89407,
+          "records": 90941,
+          "label_no": 43170,
+          "self_pairs": 0,
+          "out_of_range_ids": 0,
+          "positive_absent_from_full_graph": 0,
+          "negative_present_in_full_graph": 0,
+          "records_with_query_edge_in_stored_tree": 34793,
+          "records_with_query_edge_at_tree_root": 34793,
+          "duplicate_ids_or_undirected_pairs": 1534,
+          "label_yes": 47771
+        },
+        "sampled_2_10_test.jsonl": {
+          "sha256": "6c6a42c3e8323b062d583e6e4162f824183fbe76e2ae18ffb43a24833d1cf2ff",
+          "unique_ids_or_pairs": 48603,
+          "records": 48603,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        },
+        "sampled_2_10_train.jsonl": {
+          "sha256": "c667132056eb75b7fca28fa34f42c280e5c1dff5341823ddbb113f32834af534",
+          "unique_ids_or_pairs": 90941,
+          "records": 90941,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        },
+        "sampled_2_10_val.jsonl": {
+          "sha256": "111eb721499514200d18e2f72f21371c2faf8c826595e3e89d804fcb98491864",
+          "unique_ids_or_pairs": 29799,
+          "records": 29799,
+          "out_of_range_ids": 0,
+          "duplicate_ids_or_undirected_pairs": 0
+        }
+      },
+      "overlap": {
+        "sampled_2_10_train.jsonl vs sampled_2_10_val.jsonl": 0,
+        "sampled_2_10_train.jsonl vs sampled_2_10_test.jsonl": 0,
+        "sampled_2_10_val.jsonl vs sampled_2_10_test.jsonl": 0,
+        "edge_sampled_2_10_only_train.jsonl vs edge_sampled_2_10_only_test.jsonl": 0
+      },
+      "missing_core_files": [],
+      "missing_sbert_ho4_files": [
+        "sbert_1hop_x.pt",
+        "sbert_2hop_x.pt",
+        "sbert_3hop_x.pt",
+        "sbert_4hop_x.pt"
+      ],
+      "graph": {
+        "nodes": 169343,
+        "stored_directed_edges": 2315598,
+        "unique_undirected_edges_including_loops": 1157799,
+        "self_loops": 0,
+        "keys": [
+          "abs",
+          "adj_t",
+          "edge_index",
+          "label_texts",
+          "node_year",
+          "num_classes",
+          "num_nodes",
+          "raw_texts",
+          "test_mask",
+          "title",
+          "train_mask",
+          "val_mask",
+          "x",
+          "y"
+        ],
+        "train_mask": {
+          "shape": [
+            169343
+          ],
+          "sum": 90941
+        },
+        "val_mask": {
+          "shape": [
+            169343
+          ],
+          "sum": 29799
+        },
+        "test_mask": {
+          "shape": [
+            169343
+          ],
+          "sum": 48603
+        }
+      },
+      "sbert": {
+        "shape": [
+          169343,
+          384
+        ],
+        "dtype": "torch.float32",
+        "node_count_matches": true,
+        "all_finite": true,
+        "provenance": "UNKNOWN: filename and shape do not certify encoder or training data"
+      }
+    }
+  }
+}

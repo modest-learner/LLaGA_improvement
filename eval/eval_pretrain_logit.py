@@ -20,6 +20,9 @@ SMALL_DATASETS=["pubmed", "cora"]
 
 
 class MP(MessagePassing):
+    # PyG cannot infer these arguments from propagate() calls outside the class.
+    propagate_type = {'x': torch.Tensor, 'norm': torch.Tensor}
+
     def __init__(self):
         super().__init__(aggr='add')  # "Add" aggregation (Step 5).
     def message(self, x_j, norm):
@@ -76,6 +79,8 @@ def eval_model(args):
     model_name = get_model_name_from_path(model_path)
     print(f"Loaded from {model_path}. Model Base: {args.model_base}")
     tokenizer, model, context_len = load_pretrained_model(model_path, args.model_base, model_name,
+                                                          # Evaluation below uses one CUDA device; avoid CPU offload.
+                                                          device_map={"": torch.cuda.current_device()},
                                                           cache_dir=args.cache_dir)
     model = model.to(torch.float16).cuda()
     # data_dir=os.path.expanduser(args.data_dir)

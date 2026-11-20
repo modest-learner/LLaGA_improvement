@@ -70,6 +70,11 @@ elif [ ${model} = "opt_2.7b_4hop" ]; then
   mode="v1"
 fi
 
+model_base="${MODEL_BASE:-$model_base}"
+learning_rate="${LEARNING_RATE:-2e-3}"
+output_dir="${OUTPUT_DIR:-./checkpoints/${dataset}/${prefix}_${task}}"
+gradient_accumulation_steps="${GRADIENT_ACCUMULATION_STEPS:-1}"
+extra_train_args=("${@:6}")
 
 echo "PREFIX:  ${prefix}"
 
@@ -83,14 +88,14 @@ echo python  train/train_mem.py \
 --mm_use_graph_start_end False \
 --mm_use_graph_patch_token False \
 --bf16 True \
---output_dir  ./checkpoints/${dataset}/${prefix}_${task} \
+--output_dir  "${output_dir}" \
 --num_train_epochs 1 \
 --per_device_train_batch_size ${bs} \
 --per_device_eval_batch_size 4 \
---gradient_accumulation_steps 1 \
+--gradient_accumulation_steps "${gradient_accumulation_steps}" \
 --evaluation_strategy "no" \
 --save_strategy "epoch" \
---learning_rate 2e-3 \
+--learning_rate "${learning_rate}" \
 --weight_decay 0. \
 --warmup_ratio 0.03 \
 --lr_scheduler_type "cosine" \
@@ -105,7 +110,7 @@ echo python  train/train_mem.py \
 --mm_projector_type ${projector_type} \
 --use_task ${task} \
 --use_dataset ${dataset} \
---template ${template}
+--template ${template} "${extra_train_args[@]}"
 
 python  train/train_mem.py \
 --model_name_or_path ${model_base} \
@@ -116,14 +121,14 @@ python  train/train_mem.py \
 --mm_use_graph_start_end False \
 --mm_use_graph_patch_token False \
 --bf16 True \
---output_dir  ./checkpoints/${dataset}/${prefix}_${task} \
+--output_dir  "${output_dir}" \
 --num_train_epochs 1 \
 --per_device_train_batch_size ${bs} \
 --per_device_eval_batch_size 4 \
---gradient_accumulation_steps 1 \
+--gradient_accumulation_steps "${gradient_accumulation_steps}" \
 --evaluation_strategy "no" \
 --save_strategy "epoch" \
---learning_rate 2e-3 \
+--learning_rate "${learning_rate}" \
 --weight_decay 0. \
 --warmup_ratio 0.03 \
 --lr_scheduler_type "cosine" \
@@ -138,4 +143,4 @@ python  train/train_mem.py \
 --mm_projector_type ${projector_type} \
 --use_task ${task} \
 --use_dataset ${dataset} \
---template ${template}
+--template ${template} "${extra_train_args[@]}"
